@@ -1,0 +1,19 @@
+{
+  "name": "wx-client",
+  "version": "1.0.0",
+  "description": "Client Side Weather Station Code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NHJAX/wx-client.git"
+  },
+  "author": "NHJax-MID",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NHJAX/wx-client/issues"
+  },
+  "homepage": "https://github.com/NHJAX/wx-client#readme"
+}
