@@ -8,7 +8,7 @@ var path = require('path') //Path imported
 // var CERT = fs.readFileSync(path.join(__dirname, '/tls-cert.pem')) //Secure Cert location
 var MQTT_TOPIC          = "jax"; //MQTT Topic is set
 var PORT = 8883 //MQTT secure port
-var HOST = 'localhost' //Machine that has "SKYNET"
+var HOST = '192.168.1.2' //Machine that has "SKYNET"
 
 function WX(){
 
