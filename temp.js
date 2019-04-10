@@ -4,9 +4,12 @@ var hum; //global variable for DHT Sensors
 var mqtt = require('mqtt'); //import modual
 var fs = require('fs') //File System imported
 var path = require('path') //Path imported
-// var KEY = fs.readFileSync(path.join(__dirname, '/tls-key.pem')) //Secure Key location
-// var CERT = fs.readFileSync(path.join(__dirname, '/tls-cert.pem')) //Secure Cert location
-var MQTT_TOPIC          = "jax"; //MQTT Topic is set
+
+const WORKING_DIR = path.resolve('../secret-config');
+var SECURE_KEY = path.join(WORKING_DIR, 'certs' + '/wxKey.pem');//Location of secure key - path to key only, DO NOT READ THE KEY
+var SECURE_CERT = path.join(WORKING_DIR, 'certs' + '/wxCert.pem');//Location of Secure Cert - path to key only, DO NOT READ THE CERT
+
+var MQTT_TOPIC = "jax"; //MQTT Topic is set
 var PORT = 8883 //MQTT secure port
 var HOST = '192.168.1.2' //Machine that has "SKYNET"
 
@@ -36,8 +39,8 @@ function callMQTT(temp, hum){ //wrapped MQTT message handler in function callMQT
   var options = { //Options sets up MQTT connection
     port: PORT,
     host: HOST,
-    // key: KEY,
-    // cert: CERT,
+    key: SECURE_KEY,
+    cert: SECURE_CERT,
     rejectUnauthorized: false,
     protocol: 'mqtts'
   }
