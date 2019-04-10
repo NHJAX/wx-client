@@ -38,15 +38,15 @@ function WX(){
   })
 };
 
-console.log(SECURE_KEY.toString());
+console.log(SECURE_KEY_BUF.toString());
 
 function callMQTT(temp, hum){ //wrapped MQTT message handler in function callMQTT
 
   var options = { //Options sets up MQTT connection
     port: PORT,
     host: HOST,
-    key: SECURE_KEY.toString(),
-    cert: SECURE_CERT.toString(),
+    key: SECURE_KEY_BUF.toString(),
+    cert: SECURE_CERT_BUF.toString(),
     rejectUnauthorized: false,
     protocol: 'mqtts'
   }
