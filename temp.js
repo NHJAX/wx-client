@@ -9,6 +9,10 @@ const WORKING_DIR = path.resolve('../secret-config');
 var SECURE_KEY = path.join(WORKING_DIR, 'certs' + '/wxKey.pem');//Location of secure key - path to key only, DO NOT READ THE KEY
 var SECURE_CERT = path.join(WORKING_DIR, 'certs' + '/wxCert.pem');//Location of Secure Cert - path to key only, DO NOT READ THE CERT
 
+
+var SECURE_KEY_BUF = Buffer.from(fs.readFileSync(path.join(WORKING_DIR, 'certs', 'wxKey.pem')));//__dirname + '/tls-key.pem'; //Location of secure key
+var SECURE_CERT_BUF = Buffer.from(fs.readFileSync(path.join(WORKING_DIR, 'certs', 'wxCert.pem')));
+
 var MQTT_TOPIC = "jax"; //MQTT Topic is set
 var PORT = 8883 //MQTT secure port
 var HOST = '192.168.1.2' //Machine that has "SKYNET"
@@ -39,8 +43,8 @@ function callMQTT(temp, hum){ //wrapped MQTT message handler in function callMQT
   var options = { //Options sets up MQTT connection
     port: PORT,
     host: HOST,
-    key: SECURE_KEY,
-    cert: SECURE_CERT,
+    key: SECURE_KEY.toString(),
+    cert: SECURE_CERT.toString(),
     rejectUnauthorized: false,
     protocol: 'mqtts'
   }

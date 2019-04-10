@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/NHJAX/wx-client/issues"
   },
-  "homepage": "https://github.com/NHJAX/wx-client#readme"
+  "homepage": "https://github.com/NHJAX/wx-client#readme",
+  "dependencies": {
+    "mqtt": "^2.18.8"
+  }
 }
