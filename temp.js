@@ -38,6 +38,8 @@ function WX(){
   })
 };
 
+console.log(SECURE_KEY.toString());
+
 function callMQTT(temp, hum){ //wrapped MQTT message handler in function callMQTT
 
   var options = { //Options sets up MQTT connection
