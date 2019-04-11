@@ -4,14 +4,16 @@ import json
 import RPi.GPIO as GPIO
 import time
 from datetime import datetime
-
+now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
 with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
     data = json.load(json_data_file)
 
 URL = data['BASEURL']
-API = data['NHJax-API-Key']
-HEADERS = {'NHJax-API-Key':API}
+HEADERS = {'NHJax-API-Key':['NHJax-API-Key']}
 Topic = data['location']
+payload = {"Type": "Lighting", "LightningDetected": "No", "Location": Topic, "DistanceKM": "0"", "Time": now}
+
+requests.post(url= URL, headers= HEADERS, data= payload)
 
 print (URL)
 print (HEADERS)
