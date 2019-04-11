@@ -9,8 +9,8 @@ with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
     data = json.load(json_data_file)
 
 URL = data['BASEURL']
-API = ['NHJax-API-Key']
-Topic = ['location']
+API = data['NHJax-API-Key']
+Topic = data['location']
 
 print (URL)
 print (API)
