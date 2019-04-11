@@ -9,7 +9,7 @@ with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
     data = json.load(json_data_file)
 
 URL = data['BASEURL']
-API = data['NHJax-API-Key']
+HEADERS = {'NHJax-API-Key': data['NHJax-API-Key']}
 Topic = data['location']
 
 print (URL)
@@ -64,8 +64,8 @@ def handle_interrupt(channel):
     elif reason == 0x08:
         now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
         distance = sensor.get_distance()
-        test = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": distance, "Time": now}
-        print (test)
+        payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": distance, "Time": now}
+        requests.post(url= URL, headers= HEADERS, data= payload)
 
 
 #GPIO.setup(InterruptGPIOpin, GPIO.IN )
