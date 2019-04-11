@@ -5,7 +5,6 @@ import RPi.GPIO as GPIO
 import time
 from datetime import datetime
 
-global test
 
 GPIO.setmode(GPIO.BCM)
 
@@ -44,6 +43,7 @@ count = 0
 runcount = 0
 def handle_interrupt(channel):
     global count
+    global test
     count = count + 1
     time.sleep(0.003)
     global sensor
