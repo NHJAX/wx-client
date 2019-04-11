@@ -5,6 +5,8 @@ import RPi.GPIO as GPIO
 import time
 from datetime import datetime
 
+global test
+
 GPIO.setmode(GPIO.BCM)
 
 InterruptGPIOpin = 16
