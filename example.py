@@ -38,7 +38,7 @@ except IOError as e:
 sensor.set_indoors(False)
 sensor.set_noise_floor(0)
 sensor.calibrate(tun_cap=None)
-sensor.set_min_strikes(1)
+sensor.set_min_strikes(0)
 
 count = 0
 runcount = 0
@@ -52,10 +52,8 @@ def handle_interrupt(channel):
     reason = sensor.get_interrupt()
     print "Interrupt reason=", reason
     if reason == 0x01:
-        print "Noise level too high - adjusting"
         sensor.raise_noise_floor()
     elif reason == 0x04:
-        print "Disturber detected - masking"
         sensor.set_mask_disturber(True)
     elif reason == 0x08:
         now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
