@@ -8,14 +8,14 @@ var path = require('path') //Path imported
 const WORKING_DIR = path.resolve('../secret-config');
 var SECURE_KEY = path.join(WORKING_DIR, 'certs' + '/wxKey.pem'); //Location of secure key - path to key only, DO NOT READ THE KEY
 var SECURE_CERT = path.join(WORKING_DIR, 'certs' + '/wxCert.pem'); //Location of Secure Cert - path to key only, DO NOT READ THE CERT
+const API_CONFIG = JSON.parse(fs.readFileSync(path.join(WORKING_DIR, 'api-config.json')));
 
 
 var SECURE_KEY_BUF = Buffer.from(fs.readFileSync(path.join(WORKING_DIR, 'certs', 'wxKey.pem'))); //__dirname + '/tls-key.pem'; //Location of secure key
 var SECURE_CERT_BUF = Buffer.from(fs.readFileSync(path.join(WORKING_DIR, 'certs', 'wxCert.pem')));
 
-//var MQTT_TOPIC = "jax"; //MQTT Topic is set
-var PORT = 8883 //MQTT secure port
-var HOST = 'wx-server' //Machine that has "SKYNET"
+var PORT = API_CONFIG["SECURE_PORT"]; //MQTT secure port
+var HOST = API_CONFIG["WX_SERVER"]; ////Machine that has "SKYNET"
 
 console.log('████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ████████╗ ██████╗ ██████╗      ██████╗     ███╗   ██╗    ██╗         ██╗    ███╗   ██╗    ███████╗')
 console.log('╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗    ██╔═══██╗    ████╗  ██║    ██║         ██║    ████╗  ██║    ██╔════╝')
@@ -25,7 +25,7 @@ console.log('   ██║   ███████╗██║  ██║██�
 console.log('   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝     ╚═════╝     ╚═╝  ╚═══╝    ╚══════╝    ╚═╝    ╚═╝  ╚═══╝    ╚══════╝')
 
 
-var callMQTT = function(type, data) { //wrapped MQTT message handler in function callMQTT
+var callMQTT = function(data) { //wrapped MQTT message handler in function callMQTT
 
     var options = { //Options sets up MQTT connection
         port: PORT,
@@ -40,19 +40,15 @@ var callMQTT = function(type, data) { //wrapped MQTT message handler in function
 
     let obj = {}; //oject is assigned value
 
-    if (type === 'T') {
-        obj.type = type;
-        obj.MQTT_TOPIC = API_CONFIG["location"]+ "Weather";
-        obj.location = API_CONFIG["location"];
-        obj.temp = data.temp;
-        obj.hum = data.hum;
-        console.log(obj);
-    } else {
-        console.log('you need to supply a type');
-    }
+    obj.type = type;
+    obj.MQTT_TOPIC = API_CONFIG["location"] + "Weather";
+    obj.location = API_CONFIG["location"];
+    obj.temp = data.temp;
+    obj.hum = data.hum;
+    console.log(obj);
 
     client.on('connect', function() { //MQTT message handler "Publisher"
-      var MQTT_TOPIC = obj.MQTT_TOPIC;
+        var MQTT_TOPIC = obj.MQTT_TOPIC;
         client.subscribe(MQTT_TOPIC, function(err) {
             if (!err) {
                 buf = Buffer.from(JSON.stringify(obj)); //buffer is dumped into a JSON object using obj
@@ -61,14 +57,12 @@ var callMQTT = function(type, data) { //wrapped MQTT message handler in function
                 client.end()
             }
         })
-    })
+    });
 
     client.on('error', function() { //Error handler
-        console.log("");
-        console.log("DANGER WILL ROBINSON ERROR ERROR MESSAGE HANDLER FAILED DESTROY ROBINSON FAMILY DESTROY JUPITER ONE");
-        console.log("");
+        console.log("\nDANGER WILL ROBINSON ERROR ERROR MESSAGE HANDLER FAILED DESTROY ROBINSON FAMILY DESTROY JUPITER ONE\n");
         client.end()
-    })
+    });
 
 };
 

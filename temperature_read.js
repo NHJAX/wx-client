@@ -7,20 +7,16 @@ const API_CONFIG = JSON.parse(fs.readFileSync(path.join(WORKING_DIR, 'api-config
 
 var terminator = require('./terminator');
 
-
 sensor.read(11, 4, function(err, temperature, humidity) {
     if (!err) {
-
         var objToSend = {
             "location": API_CONFIG["location"],
             "temp": (temperature.toFixed(1)),
             "hum": (humidity.toFixed(1))
         }
         console.log('Sending: ', objToSend);
-
         //calling the MQTT function
         terminator("T", objToSend);
-
     } else {
         console.log("there was an error", err);
     }
