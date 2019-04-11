@@ -68,7 +68,7 @@ GPIO.add_event_detect(InterruptGPIOpin, GPIO.RISING, callback=handle_interrupt)
 
 print "Waiting for lightning - or at least something that looks like it"
 
-def readLightningStatus():
+# def readLightningStatus():
 
 	# distance = sensor.get_distance()
 	# noise_floor = sensor.get_noise_floor()
