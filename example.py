@@ -10,6 +10,7 @@ GPIO.setmode(GPIO.BCM)
 
 InterruptGPIOpin = 16
 
+TOPIC = "jax"
 
 sensor = AS3935(address=0x02, bus=1)
 
@@ -42,6 +43,7 @@ sensor.set_min_strikes(1)
 count = 0
 runcount = 0
 def handle_interrupt(channel):
+    global TOPIC
     global count
     global test
     count = count + 1
@@ -59,7 +61,7 @@ def handle_interrupt(channel):
         now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
         distance = sensor.get_distance()
         test = {"LightningDetected": "Yes", "Location": TOPIC, "DistanceKM": distance, "Time": now}
-
+        print (test)
 
 
 #GPIO.setup(InterruptGPIOpin, GPIO.IN )
@@ -68,7 +70,6 @@ GPIO.add_event_detect(InterruptGPIOpin, GPIO.RISING, callback=handle_interrupt)
 
 print "Waiting for lightning - or at least something that looks like it"
 
-print (test)
 def readLightningStatus():
 
 	distance = sensor.get_distance()
