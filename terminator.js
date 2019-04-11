@@ -26,6 +26,7 @@ console.log('   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═�
 
 
 var callMQTT = function(data) { //wrapped MQTT message handler in function callMQTT
+  console.log('inside callMQTT', data);
 
     var options = { //Options sets up MQTT connection
         port: PORT,
