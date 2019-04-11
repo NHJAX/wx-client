@@ -56,9 +56,8 @@ def handle_interrupt(channel):
     elif reason == 0x08:
         now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
         distance = sensor.get_distance()
-        print "We sensed lightning!"
-        print "It was " + str(distance) + "km away. (%s)" % now
-        print ""
+        test = {"LightningDetected": "Yes", "Location": TOPIC, "DistanceKM": distance, "Time": now}
+
 
 
 #GPIO.setup(InterruptGPIOpin, GPIO.IN )
@@ -67,7 +66,7 @@ GPIO.add_event_detect(InterruptGPIOpin, GPIO.RISING, callback=handle_interrupt)
 
 print "Waiting for lightning - or at least something that looks like it"
 
-
+print (test)
 def readLightningStatus():
 
 	distance = sensor.get_distance()
