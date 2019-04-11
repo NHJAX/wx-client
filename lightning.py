@@ -19,7 +19,7 @@ def run():
 
     sensor = AS3935(address=0x02, bus=1)
 
-    def MQTTpub():
+    def MQTTpub(test):
         msg = json.dumps(test)
         print (msg)
         # client.publish(TOPIC, msg)
