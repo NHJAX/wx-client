@@ -13,7 +13,7 @@ HEADERS = {'NHJax-API-Key': data['NHJax-API-Key']}
 Topic = data['location']
 
 print (URL)
-print (API)
+print (HEADERS)
 print (Topic)
 
 GPIO.setmode(GPIO.BCM)
