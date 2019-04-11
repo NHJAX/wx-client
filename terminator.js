@@ -1,4 +1,3 @@
-//var sensor = require('node-dht-sensor'); //little blue sensor modual
 var temp; //global variable for DHT Sensors
 var hum; //global variable for DHT Sensors
 var mqtt = require('mqtt'); //import modual
