@@ -38,7 +38,7 @@ except IOError as e:
 sensor.set_indoors(False)
 sensor.set_noise_floor(0)
 sensor.calibrate(tun_cap=None)
-sensor.set_min_strikes(0)
+sensor.set_min_strikes(1)
 
 count = 0
 runcount = 0
@@ -70,23 +70,23 @@ print "Waiting for lightning - or at least something that looks like it"
 
 def readLightningStatus():
 
-	distance = sensor.get_distance()
-	noise_floor = sensor.get_noise_floor()
-	min_strikes = sensor.get_min_strikes()
-	indoor = sensor.get_indoors()
-	mask_disturber = sensor.get_mask_disturber()
-	disp_lco = sensor.get_disp_lco()
-	#interrupt = sensor.get_interrupt()
-
-	print "---------"
-	print "distance=", distance
-	print "noise_floor=", noise_floor
-	print "min_strikes=", min_strikes
-	print "indoor=", indoor
-	print "mask_disturber=", mask_disturber
-	print "disp_lco=", disp_lco
-	print "count=", count
-	#print "interrupt=", interrupt
+	# distance = sensor.get_distance()
+	# noise_floor = sensor.get_noise_floor()
+	# min_strikes = sensor.get_min_strikes()
+	# indoor = sensor.get_indoors()
+	# mask_disturber = sensor.get_mask_disturber()
+	# disp_lco = sensor.get_disp_lco()
+	# #interrupt = sensor.get_interrupt()
+    #
+	# print "---------"
+	# print "distance=", distance
+	# print "noise_floor=", noise_floor
+	# print "min_strikes=", min_strikes
+	# print "indoor=", indoor
+	# print "mask_disturber=", mask_disturber
+	# print "disp_lco=", disp_lco
+	# print "count=", count
+	# #print "interrupt=", interrupt
 
 
 while True:
