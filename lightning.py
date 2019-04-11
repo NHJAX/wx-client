@@ -7,13 +7,18 @@ from datetime import datetime
 
 with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
     data = json.load(json_data_file)
-print(data)
+
+URL = data['BASEURL']
+API = ['NHJax-API-Key']
+Topic = ['location']
+
+print (URL)
+print (API)
+print (Topic)
 
 GPIO.setmode(GPIO.BCM)
 
 InterruptGPIOpin = 16
-
-TOPIC = "jax"
 
 sensor = AS3935(address=0x02, bus=1)
 
@@ -46,7 +51,6 @@ sensor.set_min_strikes(1)
 count = 0
 runcount = 0
 def handle_interrupt(channel):
-    global TOPIC
     global count
     global test
     count = count + 1
@@ -60,7 +64,7 @@ def handle_interrupt(channel):
     elif reason == 0x08:
         now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
         distance = sensor.get_distance()
-        test = {"Type": "Lighting", "LightningDetected": "Yes", "Location": TOPIC, "DistanceKM": distance, "Time": now}
+        test = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": distance, "Time": now}
         print (test)
 
 
