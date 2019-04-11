@@ -35,7 +35,7 @@ except IOError as e:
 
 sensor.set_indoors(False)
 sensor.set_noise_floor(0)
-sensor.calibrate(tun_cap=0x09)
+sensor.calibrate(tun_cap=None)
 sensor.set_min_strikes(1)
 
 count = 0
