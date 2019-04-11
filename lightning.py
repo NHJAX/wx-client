@@ -3,6 +3,7 @@ from SDL_Pi_Thunderboard_AS3935 import  AS3935
 import json
 import RPi.GPIO as GPIO
 import time
+import requests
 from datetime import datetime
 now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
 with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
