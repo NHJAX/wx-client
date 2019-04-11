@@ -24,5 +24,5 @@ var terminator = require('./terminator');
         }
     });
 
-}
+// }
 //setInterval(WX, 10000); //loops WX function every 10 seconds (10000 milliseconds) TO INFINITY AND BEYOND OR ATLEAST UNTIL A REBOOT
