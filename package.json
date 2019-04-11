@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/NHJAX/wx-client#readme",
   "dependencies": {
-    "mqtt": "^2.18.8"
+    "mqtt": "^2.18.8",
+    "node-dht-sensor": "0.0.34"
   }
 }
