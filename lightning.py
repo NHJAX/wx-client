@@ -112,5 +112,5 @@ def run():
     	#print "count=", count
     	#print "interrupt=", interrupt
     readLightningStatus()
-while True:(1.0)
+while True:(.5)
 run()
