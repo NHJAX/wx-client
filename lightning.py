@@ -14,11 +14,11 @@ HEADERS = {'NHJax-API-Key':data['NHJax-API-Key']}
 Topic = data['location']
 payload = {"Type": "Lighting", "LightningDetected": "No", "Location": Topic, "DistanceKM": "0", "Time": now}
 
-requests.post(url= URL, headers= HEADERS, data= payload)
+#requests.post(url= URL, headers= HEADERS, data= payload)
 
-print (URL)
-print (HEADERS)
-print (Topic)
+#print (URL)
+#print (HEADERS)
+#print (Topic)
 
 GPIO.setmode(GPIO.BCM)
 
