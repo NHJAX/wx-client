@@ -113,4 +113,4 @@ def run():
     	#print "interrupt=", interrupt
     readLightningStatus()
 while True:(1.0)
-    run()
+run()
