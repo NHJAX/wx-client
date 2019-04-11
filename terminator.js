@@ -1,11 +1,21 @@
-var mqtt = require('mqtt') //MQTT imported
+//var sensor = require('node-dht-sensor'); //little blue sensor modual
+var temp; //global variable for DHT Sensors
+var hum; //global variable for DHT Sensors
+var mqtt = require('mqtt'); //import modual
 var fs = require('fs') //File System imported
 var path = require('path') //Path imported
-var KEY = fs.readFileSync(path.join(__dirname, '/tls-key.pem')) //Secure Key location
-var CERT = fs.readFileSync(path.join(__dirname, '/tls-cert.pem')) //Secure Cert location
-var MQTT_TOPIC          = "jax"; //MQTT Topic is set
+
+const WORKING_DIR = path.resolve('../secret-config');
+var SECURE_KEY = path.join(WORKING_DIR, 'certs' + '/wxKey.pem'); //Location of secure key - path to key only, DO NOT READ THE KEY
+var SECURE_CERT = path.join(WORKING_DIR, 'certs' + '/wxCert.pem'); //Location of Secure Cert - path to key only, DO NOT READ THE CERT
+
+
+var SECURE_KEY_BUF = Buffer.from(fs.readFileSync(path.join(WORKING_DIR, 'certs', 'wxKey.pem'))); //__dirname + '/tls-key.pem'; //Location of secure key
+var SECURE_CERT_BUF = Buffer.from(fs.readFileSync(path.join(WORKING_DIR, 'certs', 'wxCert.pem')));
+
+//var MQTT_TOPIC = "jax"; //MQTT Topic is set
 var PORT = 8883 //MQTT secure port
-var HOST = 'localhost' //Machine that has server "SKYNET"
+var HOST = 'wx-server' //Machine that has "SKYNET"
 
 console.log('████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ████████╗ ██████╗ ██████╗      ██████╗     ███╗   ██╗    ██╗         ██╗    ███╗   ██╗    ███████╗')
 console.log('╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗    ██╔═══██╗    ████╗  ██║    ██║         ██║    ████╗  ██║    ██╔════╝')
@@ -14,24 +24,54 @@ console.log('   ██║   ██╔══╝  ██╔══██╗██�
 console.log('   ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║██║  ██║   ██║   ╚██████╔╝██║  ██║    ╚██████╔╝    ██║ ╚████║    ███████╗    ██║    ██║ ╚████║    ███████╗')
 console.log('   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝     ╚═════╝     ╚═╝  ╚═══╝    ╚══════╝    ╚═╝    ╚═╝  ╚═══╝    ╚══════╝')
 
-var options = { //Options sets up MQTT connection
-  port: PORT,
-  host: HOST,
-  key: KEY,
-  cert: CERT,
-  rejectUnauthorized: false,
-  protocol: 'mqtts'
-}
 
-var client = mqtt.connect(options) //MQTT connection is built
+var callMQTT = function(type, data) { //wrapped MQTT message handler in function callMQTT
 
-client.on('connect', function () { //MQTT message handler "Publisher"
-  client.subscribe(MQTT_TOPIC, function (err) { //Client "Terminator" looks for someone to talk to
-    if (!err) {
-      let msg = ("Hi Skynet this is T-800") //Message is developed
-      let buf = ("Topic = " + MQTT_TOPIC + " Message = " + msg) //Message is developed
-      client.publish(MQTT_TOPIC, buf); //message is pulished to subscriber
-      console.log("Message sent successfully " + buf); //local success message printed
+    var options = { //Options sets up MQTT connection
+        port: PORT,
+        host: HOST,
+        key: SECURE_KEY_BUF.toString(),
+        cert: SECURE_CERT_BUF.toString(),
+        rejectUnauthorized: false,
+        protocol: 'mqtts'
     }
-  })
-})
+
+    var client = mqtt.connect(options);
+
+    let obj = {}; //oject is assigned value
+
+    if (type === 'T') {
+        obj.type = type;
+        obj.MQTT_TOPIC = API_CONFIG["location"]+ "Weather";
+        obj.location = API_CONFIG["location"];
+        obj.temp = data.temp;
+        obj.hum = data.hum;
+        console.log(obj);
+    } else {
+        console.log('you need to supply a type');
+    }
+
+    client.on('connect', function() { //MQTT message handler "Publisher"
+      var MQTT_TOPIC = obj.MQTT_TOPIC;
+        client.subscribe(MQTT_TOPIC, function(err) {
+            if (!err) {
+                buf = Buffer.from(JSON.stringify(obj)); //buffer is dumped into a JSON object using obj
+                client.publish(MQTT_TOPIC, buf); //message is pulished to subscriber
+                console.log("Message sent successfully" + buf, Date.now());
+                client.end()
+            }
+        })
+    })
+
+    client.on('error', function() { //Error handler
+        console.log("");
+        console.log("DANGER WILL ROBINSON ERROR ERROR MESSAGE HANDLER FAILED DESTROY ROBINSON FAMILY DESTROY JUPITER ONE");
+        console.log("");
+        client.end()
+    })
+
+};
+
+module.exports = callMQTT;
+
+//setInterval(WX, 10000); //loops WX function every 10 seconds (10000 milliseconds) TO INFINITY AND BEYOND OR ATLEAST UNTIL A REBOOT
