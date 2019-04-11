@@ -10,7 +10,7 @@ with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
     data = json.load(json_data_file)
 
 URL = data['BASEURL']
-HEADERS = {'NHJax-API-Key':['NHJax-API-Key']}
+HEADERS = {'NHJax-API-Key':data['NHJax-API-Key']}
 Topic = data['location']
 payload = {"Type": "Lighting", "LightningDetected": "No", "Location": Topic, "DistanceKM": "0", "Time": now}
 
