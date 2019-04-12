@@ -21,6 +21,7 @@ function WX() {
             terminator(objToSend);
         } else {
             console.log("there was an error", err);
+            WX();
         }
     });
 
