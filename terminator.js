@@ -34,7 +34,8 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
         cert: SECURE_CERT_BUF.toString(),
         rejectUnauthorized: false,
         protocol: 'mqtts'
-    }
+    };
+    console.log(options);
 
     var client = mqtt.connect(options);
 
