@@ -25,7 +25,7 @@ console.log('   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═�
 
 
 var callMQTT = function(data) { //wrapped MQTT message handler in function callMQTT
-  console.log('inside callMQTT', data);
+    console.log('inside callMQTT', data);
 
     var options = { //Options sets up MQTT connection
         port: PORT,
@@ -39,7 +39,7 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
     var client = mqtt.connect(options);
 
     let obj = {}; //oject is assigned value
-    console.log('data', data);
+    //console.log('data', data);
 
     obj.MQTT_TOPIC = API_CONFIG["location"] + "Weather";
     obj.location = API_CONFIG["location"];
@@ -48,13 +48,18 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
     console.log(obj);
 
     client.on('connect', function() { //MQTT message handler "Publisher"
+        console.log('connect');
         var MQTT_TOPIC = obj.MQTT_TOPIC;
         client.subscribe(MQTT_TOPIC, function(err) {
+            console.log('subscribe');
             if (!err) {
                 buf = Buffer.from(JSON.stringify(obj)); //buffer is dumped into a JSON object using obj
                 client.publish(MQTT_TOPIC, buf); //message is pulished to subscriber
                 console.log("Message sent successfully" + buf, Date.now());
                 client.end()
+            }
+            else {
+              console.log('err', err);
             }
         })
     });
