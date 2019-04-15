@@ -2,6 +2,16 @@ var sensor = require('node-dht-sensor'); //little blue sensor modual
 var fs = require('fs');
 var path = require('path');
 
+var CronJob = require('cron').CronJob;
+
+
+new CronJob('10 * * * * *', function() {
+  console.log('You will see this message every 10 seconds');
+
+
+
+
+
 const WORKING_DIR = path.resolve('../secret-config');
 const API_CONFIG = JSON.parse(fs.readFileSync(path.join(WORKING_DIR, 'api-config.json')));
 
@@ -24,6 +34,8 @@ var terminator = require('./terminator');
             WX();
         }
     });
+
+}, null, true, 'America/New_York');
 
 //}
 //setInterval(WX, 10000); //loops WX function every 10 seconds (10000 milliseconds) TO INFINITY AND BEYOND OR ATLEAST UNTIL A REBOOT
