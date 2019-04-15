@@ -35,7 +35,7 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
         rejectUnauthorized: false,
         protocol: 'mqtts'
     };
-    console.log(options);
+    //console.log(options);
 
     var client = mqtt.connect(options);
 
