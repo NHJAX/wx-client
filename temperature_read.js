@@ -5,8 +5,8 @@ var path = require('path');
 var CronJob = require('cron').CronJob;
 
 
-new CronJob('10 * * * * *', function() {
-  console.log('You will see this message every 10 seconds');
+new CronJob('* */15 * * * *', function() { //fires every 15 minutes
+  console.log('You will see this message every 15');
 
 
 
