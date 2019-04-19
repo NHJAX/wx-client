@@ -27,17 +27,19 @@ InterruptGPIOpin = 16
 
 sensor = AS3935(address=0x02, bus=1)
 
+def hello():
+    now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
+    print (now)
+    payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": "0", "Time": now}
+    print (payload)
+    requests.post(url= URL, headers= HEADERS, data= payload, verify= public_key)
 
 try:
 
     sensor.set_indoors(False)
 
     print ("Thunder Board present at address 0x02")
-    now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
-    print (now)
-    payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": "0", "Time": now}
-    print (payload)
-    requests.post(url= URL, headers= HEADERS, data= payload, verify= public_key)
+    hello()
 
 except IOError as e:
 
