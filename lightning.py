@@ -8,8 +8,8 @@ from datetime import datetime
 now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
 with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
     data = json.load(json_data_file)
-with open('/home/pi/apps/secret-config/certs/publickey.pem') as public_key:
-    public_key = public_key
+pk = open("/home/pi/apps/secret-config/certs/publickey.pem", "r")
+public_key = pk.read()
 URL = data['BASEURL']
 HEADERS = {'NHJax-API-Key':data['NHJax-API-Key']}
 Topic = data['location']
@@ -36,7 +36,7 @@ try:
     now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
     payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": "0", "Time": now}
     requests.post(url= URL, headers= HEADERS, data= payload, verify= public_key)
-    
+
 except IOError as e:
 
     sensor = AS3935(address=0x03, bus=1)
