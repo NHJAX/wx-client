@@ -27,16 +27,12 @@ InterruptGPIOpin = 16
 
 sensor = AS3935(address=0x02, bus=1)
 
-def hello():
-    payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": "0", "Time": "0"}
-    requests.post(url= URL, headers= HEADERS, data= payload, verify= public_key)
 
 try:
 
     sensor.set_indoors(False)
 
     print ("Thunder Board present at address 0x02")
-    hello()
 
 except IOError as e:
 
@@ -82,6 +78,9 @@ GPIO.setup(InterruptGPIOpin, GPIO.IN, pull_up_down = GPIO.PUD_UP )
 GPIO.add_event_detect(InterruptGPIOpin, GPIO.RISING, callback=handle_interrupt)
 
 print ("Waiting for lightning - or at least something that looks like it")
+payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": "0", "Time": "0"}
+requests.post(url= URL, headers= HEADERS, data= payload, verify= public_key)
+
 
 # def readLightningStatus():
 
