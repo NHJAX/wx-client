@@ -31,7 +31,7 @@ try:
 
        sensor.set_indoors(False)
 
-       print "Thunder Board present at address 0x02"
+       print ("Thunder Board present at address 0x02")
 
 except IOError as e:
 	sensor = AS3935(address=0x03, bus=1)
@@ -40,11 +40,11 @@ except IOError as e:
 
                	sensor.set_indoors(False)
 
-               	print "Thunder Board present at address 0x03"
+               	print ("Thunder Board present at address 0x03")
 
        	except IOError as e:
 
-        	print "Thunder Board not present"
+        	print ("Thunder Board not present")
 		exit()
 
 sensor.set_indoors(False)
@@ -76,7 +76,7 @@ def handle_interrupt(channel):
 GPIO.setup(InterruptGPIOpin, GPIO.IN, pull_up_down = GPIO.PUD_UP )
 GPIO.add_event_detect(InterruptGPIOpin, GPIO.RISING, callback=handle_interrupt)
 
-print "Waiting for lightning - or at least something that looks like it"
+print ("Waiting for lightning - or at least something that looks like it")
 
 # def readLightningStatus():
 
