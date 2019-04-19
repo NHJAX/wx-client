@@ -4,6 +4,8 @@ import json
 import RPi.GPIO as GPIO
 import time
 import requests
+import sys
+import os
 from datetime import datetime
 now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
 with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
