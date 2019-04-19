@@ -10,15 +10,10 @@ from datetime import datetime
 now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
 with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
     data = json.load(json_data_file)
-def resource_path(relative):
-    return os.path.join(getattr(sys, '_MEIPASS', os.path.abspath(".")),
-                    relative)
-with open('/home/pi/apps/secret-config/certs/publickey.pem') as pk:
-    public_key = resource_path(pk)
+public_key = ('/home/pi/apps/secret-config/certs/publickey.pem')
 URL = data['BASEURL']
 HEADERS = {'NHJax-API-Key':data['NHJax-API-Key']}
 Topic = data['location']
-payload = {"Type": "Lighting", "LightningDetected": "No", "Location": Topic, "DistanceKM": "0", "Time": now}
 
 #requests.post(url= URL, headers= HEADERS, data= payload)
 
