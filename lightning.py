@@ -33,7 +33,10 @@ try:
     sensor.set_indoors(False)
 
     print ("Thunder Board present at address 0x02")
-
+    now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
+    payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": "0", "Time": now}
+    requests.post(url= URL, headers= HEADERS, data= payload, verify= public_key)
+    
 except IOError as e:
 
     sensor = AS3935(address=0x03, bus=1)
