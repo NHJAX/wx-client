@@ -8,8 +8,7 @@ from datetime import datetime
 now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
 with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
     data = json.load(json_data_file)
-pk = open("/home/pi/apps/secret-config/certs/publickey.pem", "r")
-public_key = pk.read()
+public_key = resource_path('/home/pi/apps/secret-config/certs/publickey.pem')
 URL = data['BASEURL']
 HEADERS = {'NHJax-API-Key':data['NHJax-API-Key']}
 Topic = data['location']
