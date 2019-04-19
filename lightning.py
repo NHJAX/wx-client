@@ -7,13 +7,13 @@ import requests
 import sys
 import os
 from datetime import datetime
-now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
-with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
-    data = json.load(json_data_file)
-public_key = ('/home/pi/apps/secret-config/certs/publickey.pem')
-URL = data['BASEURL']
-HEADERS = {'NHJax-API-Key':data['NHJax-API-Key']}
-Topic = data['location']
+# now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
+# with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
+#     data = json.load(json_data_file)
+# public_key = ('/home/pi/apps/secret-config/certs/publickey.pem')
+# URL = data['BASEURL']
+# HEADERS = {'NHJax-API-Key':data['NHJax-API-Key']}
+# Topic = data['location']
 
 #requests.post(url= URL, headers= HEADERS, data= payload)
 
@@ -70,7 +70,8 @@ def handle_interrupt(channel):
         now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
         distance = sensor.get_distance()
         payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": distance, "Time": now}
-        requests.post(url= URL, headers= HEADERS, data= payload, verify= public_key)
+        print (payload)
+        # requests.post(url= URL, headers= HEADERS, data= payload, verify= public_key)
 
 
 #GPIO.setup(InterruptGPIOpin, GPIO.IN )
@@ -78,8 +79,8 @@ GPIO.setup(InterruptGPIOpin, GPIO.IN, pull_up_down = GPIO.PUD_UP )
 GPIO.add_event_detect(InterruptGPIOpin, GPIO.RISING, callback=handle_interrupt)
 
 print ("Waiting for lightning - or at least something that looks like it")
-payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": "0", "Time": "0"}
-requests.post(url= URL, headers= HEADERS, data= payload, verify= public_key)
+# payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": "0", "Time": "0"}
+# requests.post(url= URL, headers= HEADERS, data= payload, verify= public_key)
 
 
 # def readLightningStatus():
