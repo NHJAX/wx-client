@@ -41,6 +41,7 @@ def EmailLikeERR():
 
 try:
     sensor.set_indoors(False)
+    raise IOError
 except IOError as e:
     sensor = AS3935(address=0x03, bus=1)
     EmailLikeERR(e)
