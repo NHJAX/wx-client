@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from SDL_Pi_Thunderboard_AS3935 import  AS3935
-
+import json
+import requests
 import RPi.GPIO as GPIO
 import time
 from datetime import datetime
