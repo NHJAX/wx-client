@@ -32,7 +32,7 @@ def EmailLikeERR():
     smtpserver.ehlo
     smtpserver.login(gmail_user, gmail_password)
     today = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
-    text = "The box has a problem ", e
+    text = "The box has a problem "
     msg = MIMEText(text)
     msg['Subject'] = Topic, ' WX BOX had a ERR'
     msg['From'] = gmail_user
