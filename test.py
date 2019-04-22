@@ -33,14 +33,13 @@ def handle_interrupt(channel):
     time.sleep(0.003)
     global sensor
     reason = sensor.get_interrupt()
-    reason = 0x08
     if reason == 0x01:
         print ("Noise level too high - adjusting")
         sensor.raise_noise_floor()
     elif reason == 0x04:
         print ("Disturber detected - masking")
         sensor.set_mask_disturber(True)
-    elif reason == 0x08:
+    elif reason < 0x01 or > 0x04:
         now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
         distance = sensor.get_distance()
         print ("We sensed lightning!")
