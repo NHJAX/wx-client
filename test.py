@@ -33,7 +33,7 @@ def handle_interrupt(channel):
     time.sleep(0.003)
     global sensor
     reason = sensor.get_interrupt()
-    print ("Interrupt reason=", reason)
+    reason = 0x08
     if reason == 0x01:
         print ("Noise level too high - adjusting")
         sensor.raise_noise_floor()
