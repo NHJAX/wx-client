@@ -4,7 +4,18 @@ from SDL_Pi_Thunderboard_AS3935 import  AS3935
 import RPi.GPIO as GPIO
 import time
 from datetime import datetime
+now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
+with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
+    data = json.load(json_data_file)
+URL = data['BASEURL']
+HEADERS = {'NHJax-API-Key':data['NHJax-API-Key']}
+Topic = data['LOCATION']
 
+# requests.post(url= URL, headers= HEADERS, data= payload)
+
+#print (URL)
+#print (HEADERS)
+#print (Topic)
 GPIO.setmode(GPIO.BCM)
 
 InterruptGPIOpin = 16
@@ -45,6 +56,8 @@ def handle_interrupt(channel):
         print ("We sensed lightning!")
         print ("It was " + str(distance) + "km away. (%s)" % now)
         print ("")
+        payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": distance, "Time": now}
+        requests.post(url= URL, headers= HEADERS, data= payload)
 
 
 #GPIO.setup(InterruptGPIOpin, GPIO.IN )
@@ -52,7 +65,6 @@ GPIO.setup(InterruptGPIOpin, GPIO.IN, pull_up_down = GPIO.PUD_UP )
 GPIO.add_event_detect(InterruptGPIOpin, GPIO.RISING, callback=handle_interrupt)
 
 print ("Waiting for lightning - or at least something that looks like it")
-
 
 def readLightningStatus():
 
@@ -62,19 +74,6 @@ def readLightningStatus():
 	indoor = sensor.get_indoors()
 	mask_disturber = sensor.get_mask_disturber()
 	disp_lco = sensor.get_disp_lco()
-	#interrupt = sensor.get_interrupt()
-
-	print ("---------")
-	print ("distance=", distance)
-	print ("noise_floor=", noise_floor)
-	print ("min_strikes=", min_strikes)
-	print ("indoor=", indoor)
-	print ("mask_disturber=", mask_disturber)
-	print ("disp_lco=", disp_lco)
-	print ("count=", count)
-	#print "interrupt=", interrupt
-
 
 while True:
     time.sleep(1.0)
-    #readLightningStatus()
