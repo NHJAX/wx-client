@@ -24,9 +24,9 @@ except IOError as e:
 
     try:
 
-           	sensor.set_indoors(False)
+       	sensor.set_indoors(False)
 
-           	print ("Thunder Board present at address 0x03")
+       	print ("Thunder Board present at address 0x03")
 
    	except IOError as e:
 
