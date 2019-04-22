@@ -12,22 +12,14 @@ URL = data['BASEURL']
 HEADERS = {'NHJax-API-Key':data['NHJax-API-Key']}
 Topic = data['LOCATION']
 
-# requests.post(url= URL, headers= HEADERS, data= payload)
-
-#print (URL)
-#print (HEADERS)
-#print (Topic)
 GPIO.setmode(GPIO.BCM)
 
 InterruptGPIOpin = 16
 
-
 sensor = AS3935(address=0x02, bus=1)
-
 
 try:
    sensor.set_indoors(False)
-   print ("Thunder Board present at address 0x02")
 
 except IOError as e:
    sensor = AS3935(address=0x03, bus=1)
@@ -46,26 +38,18 @@ def handle_interrupt(channel):
     global sensor
     reason = sensor.get_interrupt()
     if reason == 0x01:
-        print ("Noise level too high - adjusting")
         sensor.raise_noise_floor()
     elif reason == 0x04:
-        print ("Disturber detected - masking")
         sensor.set_mask_disturber(True)
     else:
         now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
         distance = sensor.get_distance()
-        print ("We sensed lightning!")
-        print ("It was " + str(distance) + "km away. (%s)" % now)
-        print ("")
         payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": distance, "Time": now}
+        print (payload)
         requests.post(url= URL, headers= HEADERS, data= payload)
 
-
-#GPIO.setup(InterruptGPIOpin, GPIO.IN )
 GPIO.setup(InterruptGPIOpin, GPIO.IN, pull_up_down = GPIO.PUD_UP )
 GPIO.add_event_detect(InterruptGPIOpin, GPIO.RISING, callback=handle_interrupt)
-
-print ("Waiting for lightning - or at least something that looks like it")
 
 def readLightningStatus():
 
