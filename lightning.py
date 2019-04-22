@@ -44,7 +44,7 @@ try:
     raise IOError
 except IOError as e:
     sensor = AS3935(address=0x03, bus=1)
-    EmailLikeERR(e)
+    EmailLikeERR()
 
 sensor.set_indoors(False)
 sensor.set_noise_floor(0)
