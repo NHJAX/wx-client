@@ -26,7 +26,7 @@ var terminator = require('./terminator');
                 "temp": (temperature.toFixed(1)),
                 "hum": (humidity.toFixed(1))
             }
-            console.log('Sending: ', objToSend);
+            //console.log('Sending: ', objToSend);
             //calling the MQTT function
             terminator(objToSend);
         } else {
