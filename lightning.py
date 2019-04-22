@@ -27,10 +27,12 @@ InterruptGPIOpin = 16
 
 sensor = AS3935(address=0x02, bus=1)
 
+sensor.reset()
+
 
 try:
 
-    sensor.set_indoors(False)
+    sensor.set_indoors(True)
 
     print ("Thunder Board present at address 0x02")
 
@@ -40,7 +42,7 @@ except IOError as e:
 
     try:
 
-        sensor.set_indoors(False)
+        sensor.set_indoors(True)
 
         print ("Thunder Board present at address 0x03")
 
@@ -48,7 +50,7 @@ except IOError as e:
         print ("Thunder Board not present")
         exit()
 
-sensor.set_indoors(False)
+sensor.set_indoors(True)
 sensor.set_noise_floor(0)
 sensor.calibrate(tun_cap=None)
 sensor.set_min_strikes(1)
