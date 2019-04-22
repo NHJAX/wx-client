@@ -4,6 +4,10 @@ import json
 import requests
 import RPi.GPIO as GPIO
 import time
+import subprocess
+import smtplib
+import socket
+from email.mime.text import MIMEText
 from datetime import datetime
 now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
 with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
@@ -18,11 +22,29 @@ InterruptGPIOpin = 16
 
 sensor = AS3935(address=0x02, bus=1)
 
+def EmailLikeERR():
+    to = 'nhjax-dev@gmail.com'
+    gmail_user = 'rpiwxbox@gmail.com'
+    gmail_password = 'ZAQ!2wsx'
+    smtpserver = smtplib.SMTP('smtp.gmail.com',587)
+    smtpserver.ehlo()
+    smtpserver.starttls()
+    smtpserver.ehlo
+    smtpserver.login(gmail_user, gmail_password)
+    today = datetime.date.today()
+    msg = MIMEText(e)
+    msg['Subject'] = Topic, ' WX BOX had a ERR'
+    msg['From'] = gmail_user
+    msg['To'] = to
+    smtpserver.sendmail(gmail_user, [to], msg.as_string())
+    smtpserver.quit()
+
 try:
    sensor.set_indoors(False)
 
-except IOError as e:
-   sensor = AS3935(address=0x03, bus=1)
+    except IOError as e:
+        sensor = AS3935(address=0x03, bus=1)
+        EmailLikeERR(e)
 
 sensor.set_indoors(False)
 sensor.set_noise_floor(0)
