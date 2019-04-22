@@ -11,6 +11,7 @@ with open('/home/pi/apps/secret-config/api-config.json') as json_data_file:
 URL = data['BASEURL']
 HEADERS = {'NHJax-API-Key':data['NHJax-API-Key']}
 Topic = data['LOCATION']
+tap = data['Gmail']
 
 GPIO.setmode(GPIO.BCM)
 
@@ -25,12 +26,11 @@ def EmailLikeERR():
     import datetime
     to = 'nhjax-dev@gmail.com'
     gmail_user = 'rpiwxbox@gmail.com'
-    gmail_password = 'ZAQ!2wsx'
     smtpserver = smtplib.SMTP('smtp.gmail.com',587)
     smtpserver.ehlo()
     smtpserver.starttls()
     smtpserver.ehlo
-    smtpserver.login(gmail_user, gmail_password)
+    smtpserver.login(gmail_user, tap)
     today = datetime.date.today()
     my_ssid = "DoItLikeERR"
     msg = MIMEText(my_ssid)
