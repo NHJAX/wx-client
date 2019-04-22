@@ -27,9 +27,6 @@ def EmailLikeERR():
     gmail_user = 'rpiwxbox@gmail.com'
     gmail_password = 'ZAQ!2wsx'
     smtpserver = smtplib.SMTP('smtp.gmail.com',587)
-    smtpserver.ehlo()
-    smtpserver.starttls()
-    smtpserver.ehlo
     smtpserver.login(gmail_user, gmail_password)
     today = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
     text = "The box has a problem "
