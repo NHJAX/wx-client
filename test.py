@@ -19,8 +19,8 @@ try:
 
    print ("Thunder Board present at address 0x02")
 
-   except IOError as e:
-       sensor = AS3935(address=0x03, bus=1)
+except IOError as e:
+   sensor = AS3935(address=0x03, bus=1)
 
 try:
 
