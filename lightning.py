@@ -19,6 +19,7 @@ InterruptGPIOpin = 16
 
 sensor = AS3935(address=0x02, bus=1)
 def EmailLikeERR():
+    print ('You got a error like ERRR')
     import subprocess
     import smtplib
     import socket
@@ -43,6 +44,7 @@ def EmailLikeERR():
 
 try:
    sensor.set_indoors(False)
+   print ('Sensor Online')
    #raise IOError #uncomment to test err handler
 except IOError as e:
    sensor = AS3935(address=0x03, bus=1)
@@ -66,6 +68,7 @@ def handle_interrupt(channel):
     elif reason == 0x04:
         sensor.set_mask_disturber(True)
     else:
+        print ("Whoa did you see that")
         now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
         distance = sensor.get_distance()
         payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": distance, "Time": now}
