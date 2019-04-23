@@ -49,7 +49,7 @@ def SendPayload():
     try:
         print ("Sending That Message")
         requests.post(url= URL, headers= HEADERS, data= payload)
-    except ConnectionRefusedError as e:
+    except Exception as e:
         print ("CANNOT SEE THE SERVER!!! the error is ", e)
 
 try:
