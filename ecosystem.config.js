@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: 'TempRead',
-    script: 'node temperature_read.js',
+    script: './node temperature_read.js',
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
     instances: 1,
     autorestart: true,
@@ -16,7 +16,7 @@ module.exports = {
   },
   {
     name: 'LightningDetector',
-    script: 'python lightning.py',
+    script: './python lightning.py',
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
     instances: 1,
     autorestart: true,
