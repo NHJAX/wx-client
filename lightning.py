@@ -43,6 +43,9 @@ def EmailLikeERR():
     print ('Email sent')
 
 def SendPayload():
+    global HEADERS
+    global URL
+    global payload
     try:
         print ("Sending That Message")
         requests.post(url= URL, headers= HEADERS, data= payload)
@@ -66,6 +69,7 @@ count = 0
 runcount = 0
 def handle_interrupt(channel):
     global count
+    global payload
     count = count + 1
     time.sleep(0.003)
     global sensor
