@@ -76,7 +76,7 @@ GPIO.setup(InterruptGPIOpin, GPIO.IN, pull_up_down = GPIO.PUD_UP )
 GPIO.add_event_detect(InterruptGPIOpin, GPIO.RISING, callback=handle_interrupt)
 
 now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
-print ()"Lightning Detection Online @ ", now)
+print ("Lightning Detection Online @ ", now)
 def readLightningStatus():
 
 	distance = sensor.get_distance()
