@@ -42,6 +42,13 @@ def EmailLikeERR():
     smtpserver.quit()
     print ('Email sent')
 
+def SendPayload():
+    try:
+        print ("Sending That Message")
+        requests.post(url= URL, headers= HEADERS, data= payload)
+    except ConnectionRefusedError as e:
+        print ("CANNOT SEE THE SERVER!!! the error is ", e)
+
 try:
    sensor.set_indoors(False)
    print ('Sensor Online')
@@ -73,12 +80,11 @@ def handle_interrupt(channel):
         distance = sensor.get_distance()
         payload = {"Type": "Lighting", "LightningDetected": "Yes", "Location": Topic, "DistanceKM": distance, "Time": now}
         print (payload)
-        requests.post(url= URL, headers= HEADERS, data= payload)
+        SendPayload()
 
 GPIO.setup(InterruptGPIOpin, GPIO.IN, pull_up_down = GPIO.PUD_UP )
 GPIO.add_event_detect(InterruptGPIOpin, GPIO.RISING, callback=handle_interrupt)
 
-now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
 print ("Lightning Detection Online @ ", now)
 def readLightningStatus():
 
