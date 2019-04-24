@@ -20,8 +20,10 @@ console.log (WORKING_DIR);
 console.log (SECURE_KEY);
 console.log (SECURE_CERT);
 console.log (API_CONFIG);
-console.log (WORKING_DIR);
-console.log (WORKING_DIR);
+console.log (PORT);
+console.log (HOST);
+console.log (SECURE_KEY_BUF);
+console.log (SECURE_CERT_BUF);
 
 console.log('████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ████████╗ ██████╗ ██████╗      ██████╗     ███╗   ██╗    ██╗         ██╗    ███╗   ██╗    ███████╗')
 console.log('╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗    ██╔═══██╗    ████╗  ██║    ██║         ██║    ████╗  ██║    ██╔════╝')
