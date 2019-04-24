@@ -44,12 +44,12 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
         rejectUnauthorized: false,
         protocol: 'mqtts'
     };
-    //console.log(options);
+    console.log(options);
 
     var client = mqtt.connect(options);
 
     let obj = {}; //oject is assigned value
-    //console.log('data', data);
+    console.log('data', data);
 
     obj.MQTT_TOPIC = "pharmacyWaitTimes";
     obj.location = API_CONFIG["LOCATION"];
