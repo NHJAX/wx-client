@@ -71,6 +71,8 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
 
 };
 
-module.exports = callMQTT;
+callMQTT({"foo":"bar"});
+
+//module.exports = callMQTT;
 
 //setInterval(WX, 10000); //loops WX function every 10 seconds (10000 milliseconds) TO INFINITY AND BEYOND OR ATLEAST UNTIL A REBOOT
