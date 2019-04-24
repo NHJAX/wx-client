@@ -42,7 +42,7 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
     let obj = {}; //oject is assigned value
     //console.log('data', data);
 
-    obj.MQTT_TOPIC = API_CONFIG["/waitTimes"];
+    obj.MQTT_TOPIC = "waitTimes";
     obj.location = API_CONFIG["LOCATION"];
     obj.msg = {"Greeting":"hi"};
     console.log(obj);
