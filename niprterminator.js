@@ -56,8 +56,9 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
     obj.msg = {"Greeting":"hi"};
     console.log(obj);
 
+    console.log ("Opening Client");
     client.on('connect', function() { //MQTT message handler "Publisher"
-        //console.log('connect');
+        console.log('connect');
         var MQTT_TOPIC = obj.MQTT_TOPIC;
         client.subscribe(MQTT_TOPIC, function(err) {
             console.log('subscribe');
