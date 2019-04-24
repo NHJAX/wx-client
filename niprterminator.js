@@ -42,7 +42,7 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
         key: SECURE_KEY_BUF.toString(),
         cert: SECURE_CERT_BUF.toString(),
         rejectUnauthorized: false,
-        protocol: 'mqtts'
+        protocol: 'mqtt'
     };
     //console.log(options);
 
