@@ -16,6 +16,13 @@ var SECURE_CERT_BUF = Buffer.from(fs.readFileSync(path.join(WORKING_DIR, 'certs'
 var PORT = API_CONFIG["SECURE_PORT"]; //MQTT secure port
 var HOST = API_CONFIG["WX_SERVER"]; ////Machine that has "SKYNET"
 
+console.log (WORKING_DIR);
+console.log (SECURE_KEY);
+console.log (SECURE_CERT);
+console.log (API_CONFIG);
+console.log (WORKING_DIR);
+console.log (WORKING_DIR);
+
 console.log('████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ████████╗ ██████╗ ██████╗      ██████╗     ███╗   ██╗    ██╗         ██╗    ███╗   ██╗    ███████╗')
 console.log('╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗    ██╔═══██╗    ████╗  ██║    ██║         ██║    ████╗  ██║    ██╔════╝')
 console.log('   ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║███████║   ██║   ██║   ██║██████╔╝    ██║   ██║    ██╔██╗ ██║    ██║         ██║    ██╔██╗ ██║    █████╗  ')
