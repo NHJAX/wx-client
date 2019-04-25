@@ -50,11 +50,11 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
     console.log("Please input Temp Celisus");
     standard_input.on('data', function (data){
       var temp = data;
-    }
+    });
     console.log("Please input humidity");
     standard_input.on('data', function (data){
       var hum = data;
-    }
+    });
 
     var client = mqtt.connect(options);
     let obj = {}; //oject is assigned value
