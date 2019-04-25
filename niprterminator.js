@@ -48,9 +48,13 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
     var standard_input = process.stdin;
     standard_input.setEncoding('utf-8');
     console.log("Please input Temp Celisus");
-    standard_input.on(temp)
+    standard_input.on('data', function (data){
+      var temp = data;
+    }
     console.log("Please input humidity");
-    standard_input.on(hum)
+    standard_input.on('data', function (data){
+      var hum = data;
+    }
 
     var client = mqtt.connect(options);
     let obj = {}; //oject is assigned value
