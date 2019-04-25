@@ -45,6 +45,12 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
         protocol: 'mqtts'
     };
     console.log(options);
+    var standard_input = process.stdin;
+    standard_input.setEncoding('utf-8');
+    console.log("Please input Temp Celisus");
+    standard_input.on(temp)
+    console.log("Please input humidity");
+    standard_input.on(hum)
 
     var client = mqtt.connect(options);
     let obj = {}; //oject is assigned value
@@ -52,10 +58,9 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
 
     obj.MQTT_TOPIC = API_CONFIG["LOCATION"] + "Weather";
     obj.location = API_CONFIG["LOCATION"];
-    obj.temp = "40";
-    obj.hum = "50";
+    obj.temp = temp;
+    obj.hum = hum;
     console.log(obj);
-
 
     console.log ("Opening Client");
     client.on('connect', function() { //MQTT message handler "Publisher"
