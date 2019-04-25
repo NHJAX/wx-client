@@ -30,10 +30,10 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
     var options = { //Options sets up MQTT connection
         port: 1883,
         host: HOST,
-        //key: SECURE_KEY_BUF.toString(),
-        //cert: SECURE_CERT_BUF.toString(),
+        key: SECURE_KEY_BUF.toString(),
+        cert: SECURE_CERT_BUF.toString(),
         rejectUnauthorized: false,
-        protocol: 'mqtt'
+        protocol: 'mqtts'
     };
     //console.log(options);
 
