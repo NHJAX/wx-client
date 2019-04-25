@@ -52,7 +52,7 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
 
     obj.MQTT_TOPIC = API_CONFIG["LOCATION"] + "Weather";
     obj.location = API_CONFIG["LOCATION"];
-    obj.temp = "60";
+    obj.temp = "40";
     obj.hum = "50";
     console.log(obj);
 
