@@ -16,6 +16,17 @@ var SECURE_CERT_BUF = Buffer.from(fs.readFileSync(path.join(WORKING_DIR, 'certs'
 var PORT = API_CONFIG["SECURE_PORT"]; //MQTT secure port
 var HOST = API_CONFIG["WX_SERVER"]; ////Machine that has "SKYNET"
 
+var standard_input = process.stdin;
+standard_input.setEncoding('utf-8');
+console.log("Please input Temp Celisus");
+standard_input.on('data', function (data){
+  var temp = data;
+});
+console.log("Please input humidity");
+standard_input.on('data', function (data){
+  var hum = data;
+});
+
 console.log (WORKING_DIR);
 console.log (SECURE_KEY);
 console.log (SECURE_CERT);
@@ -45,16 +56,7 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
         protocol: 'mqtts'
     };
     console.log(options);
-    var standard_input = process.stdin;
-    standard_input.setEncoding('utf-8');
-    console.log("Please input Temp Celisus");
-    standard_input.on('data', function (data){
-      var temp = data;
-    });
-    console.log("Please input humidity");
-    standard_input.on('data', function (data){
-      var hum = data;
-    });
+
 
     var client = mqtt.connect(options);
     let obj = {}; //oject is assigned value
