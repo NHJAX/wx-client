@@ -47,14 +47,15 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
     console.log(options);
 
     var client = mqtt.connect(options);
-
     let obj = {}; //oject is assigned value
-    console.log('data', data);
+    //console.log('data', data);
 
-    obj.MQTT_TOPIC = "pharmacyWaitTimes";
+    obj.MQTT_TOPIC = API_CONFIG["LOCATION"] + "Weather";
     obj.location = API_CONFIG["LOCATION"];
-    obj.msg = {"Greeting":"hi"};
+    obj.temp = "23";
+    obj.hum = "50";
     console.log(obj);
+
 
     console.log ("Opening Client");
     client.on('connect', function() { //MQTT message handler "Publisher"
