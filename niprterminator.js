@@ -3,7 +3,6 @@ var hum; //global variable for DHT Sensors
 var mqtt = require('mqtt'); //import modual
 var fs = require('fs') //File System imported
 var path = require('path') //Path imported
-var answer;
 
 const WORKING_DIR = path.resolve('../secret-config');
 var SECURE_KEY = path.join(WORKING_DIR, 'certs' + '/wxKey.pem'); //Location of secure key - path to key only, DO NOT READ THE KEY
@@ -16,32 +15,13 @@ var SECURE_CERT_BUF = Buffer.from(fs.readFileSync(path.join(WORKING_DIR, 'certs'
 
 var PORT = API_CONFIG["SECURE_PORT"]; //MQTT secure port
 var HOST = API_CONFIG["WX_SERVER"]; ////Machine that has "SKYNET"
-var readline = require('readline');
 
-var userinput = function (answer){
-
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
-  rl.question('What do you think of Node.js? ', (answer) => {
-    // TODO: Log the answer in a database
-    console.log(answer);
-    rl.close();
-  });
-};
-
-userinput();
-console.log (answer);
-console.log (WORKING_DIR);
 console.log (SECURE_KEY);
 console.log (SECURE_CERT);
 console.log (API_CONFIG);
 console.log (PORT);
 console.log (HOST);
-console.log (SECURE_KEY_BUF);
-console.log (SECURE_CERT_BUF);
+
 
 console.log('████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ████████╗ ██████╗ ██████╗      ██████╗     ███╗   ██╗    ██╗         ██╗    ███╗   ██╗    ███████╗')
 console.log('╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗    ██╔═══██╗    ████╗  ██║    ██║         ██║    ████╗  ██║    ██╔════╝')
@@ -71,8 +51,8 @@ var callMQTT = function(data) { //wrapped MQTT message handler in function callM
 
     obj.MQTT_TOPIC = API_CONFIG["LOCATION"] + "Weather";
     obj.location = API_CONFIG["LOCATION"];
-    obj.temp = temp;
-    obj.hum = hum;
+    obj.temp = "40";
+    obj.hum = "80";
     console.log(obj);
 
     console.log ("Opening Client");
