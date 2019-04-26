@@ -15,16 +15,18 @@ var SECURE_CERT_BUF = Buffer.from(fs.readFileSync(path.join(WORKING_DIR, 'certs'
 
 var PORT = API_CONFIG["SECURE_PORT"]; //MQTT secure port
 var HOST = API_CONFIG["WX_SERVER"]; ////Machine that has "SKYNET"
+const readline = require('readline');
 
-var standard_input = process.stdin;
-standard_input.setEncoding('utf-8');
-console.log("Please input Temp Celisus");
-standard_input.on('data', function (data){
-  var temp = data;
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
 });
-console.log("Please input humidity");
-standard_input.on('data', function (data){
-  var hum = data;
+
+rl.question('What do you think of Node.js? ', (answer) => {
+  // TODO: Log the answer in a database
+  console.log(answer);
+
+  rl.close();
 });
 
 console.log (WORKING_DIR);
