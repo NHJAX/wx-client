@@ -3,6 +3,7 @@ var hum; //global variable for DHT Sensors
 var mqtt = require('mqtt'); //import modual
 var fs = require('fs') //File System imported
 var path = require('path') //Path imported
+var answer;
 
 const WORKING_DIR = path.resolve('../secret-config');
 var SECURE_KEY = path.join(WORKING_DIR, 'certs' + '/wxKey.pem'); //Location of secure key - path to key only, DO NOT READ THE KEY
@@ -17,18 +18,22 @@ var PORT = API_CONFIG["SECURE_PORT"]; //MQTT secure port
 var HOST = API_CONFIG["WX_SERVER"]; ////Machine that has "SKYNET"
 var readline = require('readline');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+var userinput = function (answer){
 
-rl.question('What do you think of Node.js? ', (answer) => {
-  // TODO: Log the answer in a database
-  console.log(answer);
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
 
-  rl.close();
-});
+  rl.question('What do you think of Node.js? ', (answer) => {
+    // TODO: Log the answer in a database
+    console.log(answer);
+    rl.close();
+  });
+};
 
+userinput();
+console.log (answer);
 console.log (WORKING_DIR);
 console.log (SECURE_KEY);
 console.log (SECURE_CERT);
