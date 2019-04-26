@@ -15,7 +15,7 @@ var SECURE_CERT_BUF = Buffer.from(fs.readFileSync(path.join(WORKING_DIR, 'certs'
 
 var PORT = API_CONFIG["SECURE_PORT"]; //MQTT secure port
 var HOST = API_CONFIG["WX_SERVER"]; ////Machine that has "SKYNET"
-const readline = require('readline');
+var readline = require('readline');
 
 const rl = readline.createInterface({
   input: process.stdin,
