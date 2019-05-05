@@ -14,24 +14,16 @@ sensor = AS3935(address=0x02, bus=1)
 
 
 try:
-
        sensor.set_indoors(False)
-
        print ("Thunder Board present at address 0x02")
-
 except IOError as e:
-	sensor = AS3935(address=0x03, bus=1)
-
-    try:
-
-       	sensor.set_indoors(False)
-
-       	print ("Thunder Board present at address 0x03")
-
-   	except IOError as e:
-
-    	print ("Thunder Board not present")
-	exit()
+   sensor = AS3935(address=0x03, bus=1)
+   try:
+       sensor.set_indoors(False)
+       print ("Thunder Board present at address 0x03")
+   except IOError as e:
+       print ("Thunder Board not present")
+       exit()
 
 sensor.set_indoors(False)
 sensor.set_noise_floor(0)
