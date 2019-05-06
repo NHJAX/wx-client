@@ -68,7 +68,7 @@ def readLightningStatus():
 	indoor = sensor.get_indoors()
 	mask_disturber = sensor.get_mask_disturber()
 	disp_lco = sensor.get_disp_lco()
-	#interrupt = sensor.get_interrupt()
+	interrupt = sensor.get_interrupt()
 
 	print ("---------")
 	print ("distance="), distance
