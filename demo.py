@@ -53,7 +53,7 @@ def handle_interrupt(channel):
     elif reason == 0x04:
         print ("Disturber detected - masking")
         sensor.set_mask_disturber(True)
-    elif reason == 0x08:
+    elif reason == 0x00:
         now = datetime.now().strftime('%H:%M:%S - %Y/%m/%d')
         distance = sensor.get_distance()
         print ("We sensed lightning!")
