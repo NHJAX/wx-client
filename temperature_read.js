@@ -17,7 +17,7 @@ const API_CONFIG = JSON.parse(fs.readFileSync(path.join(WORKING_DIR, 'api-config
 
 var terminator = require('./terminator');
 
-function WX() {
+//function WX() {
 
     sensor.read(11, 4, function(err, temperature, humidity) {
         if (!err) {
@@ -31,11 +31,11 @@ function WX() {
             terminator(objToSend);
         } else {
             console.log("there was an error", err);
-            WX();
+            //WX();
         }
     });
 
 }, null, true, 'America/New_York');
 
-};
+//};
 //setInterval(WX, 10000); //loops WX function every 10 seconds (10000 milliseconds) TO INFINITY AND BEYOND OR ATLEAST UNTIL A REBOOT
