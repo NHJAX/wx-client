@@ -7,7 +7,7 @@ var CronJob = require('cron').CronJob;
 const WORKING_DIR = path.resolve('../secret-config');
 const API_CONFIG = JSON.parse(fs.readFileSync(path.join(WORKING_DIR, 'api-config.json')));
 
-new CronJob('*/15 * * * * ', WX(), null, true,'America/New_York')
+new CronJob('*/1 * * * * ', WX);//, null, true,'America/New_York')
 
 var retries = 0;
 
