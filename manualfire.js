@@ -2,7 +2,7 @@ var sensor = require('node-dht-sensor'); //little blue sensor modual
 var fs = require('fs');
 var path = require('path');
 
-//function WX() {
+function WX() {
 
     sensor.read(11, 4, function(err, temperature, humidity) {
         if (!err) {
@@ -19,8 +19,5 @@ var path = require('path');
             WX();
         }
     });
-
-}, null, true, 'America/New_York');
-
-//}
-//setInterval(WX, 10000); //loops WX function every 10 seconds (10000 milliseconds) TO INFINITY AND BEYOND OR ATLEAST UNTIL A REBOOT
+};
+WX();
