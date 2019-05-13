@@ -7,7 +7,6 @@ function WX() {
     sensor.read(11, 4, function(err, temperature, humidity) {
         if (!err) {
             var objToSend = {
-                "location": API_CONFIG["LOCATION"],
                 "temp": (temperature.toFixed(1)),
                 "hum": (humidity.toFixed(1))
             }
