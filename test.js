@@ -55,10 +55,11 @@ function WX() { //fires every 15 minutes
       console.log(objToSendleft);
       console.log(objToSendright);
     };
-    setInterval(CL, 10000);
+
 
 //}, null, true, 'America/New_York');
 
 };
 WX();
+CL();
 //setInterval(WX, 10000); //loops WX function every 10 seconds (10000 milliseconds) TO INFINITY AND BEYOND OR ATLEAST UNTIL A REBOOT
