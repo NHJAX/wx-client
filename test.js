@@ -10,12 +10,14 @@ var objToSendleft = "";
 
 function WX(tempright, templeft, humleft, humright) { //fires every 15 minutes
 
-    sensor.read(11, 4, function(err, tempright, humright) {
+    sensor.read(11, 4, function(err, temp, hum) {
         if (!err) {
             var objToSendright = {
-                "temp": (tempright.toFixed(1)),
-                "hum": (humright.toFixed(1))
+                "temp": (temp.toFixed(1)),
+                "hum": (hum.toFixed(1))
             }
+            humright = hum;
+            tempright = temp;
             console.log('Sending: ', objToSendright);
             //calling the MQTT function
             //terminator(objToSend);
@@ -31,12 +33,14 @@ function WX(tempright, templeft, humleft, humright) { //fires every 15 minutes
         }
     });
 
-    sensor.read(11, 17, function(err, templeft, humleft) {
+    sensor.read(11, 17, function(err, temp, hum) {
         if (!err) {
             var objToSendleft = {
-                "temp": (templeft.toFixed(1)),
-                "hum": (humleft.toFixed(1))
+                "temp": (temp.toFixed(1)),
+                "hum": (hum.toFixed(1))
             }
+            humleft = hum;
+            templeft = temp;
             console.log('Sending: ', objToSendleft);
             //calling the MQTT function
             //terminator(objToSend);
