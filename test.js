@@ -52,8 +52,8 @@ function WX() { //fires every 15 minutes
         }
     });
     function CL(objToSendleft, objToSendright) {
-      console.log(objToSendleft);
-      console.log(objToSendright);
+      console.log(humleft);
+      console.log(humright);
     };
     setTimeout(CL, 3000);
 
