@@ -19,7 +19,6 @@ function WX() { //fires every 15 minutes
             console.log('Sending: ', objToSendright);
             //calling the MQTT function
             //terminator(objToSend);
-            return;
         } else {
             console.log("there was an error", err);
             if (retries <= 2){
@@ -29,7 +28,6 @@ function WX() { //fires every 15 minutes
                 retries = 0;
                 return;
             }
-
         }
     });
 
@@ -42,7 +40,6 @@ function WX() { //fires every 15 minutes
             console.log('Sending: ', objToSendleft);
             //calling the MQTT function
             //terminator(objToSend);
-            return;
         } else {
             console.log("there was an error", err);
             if (retries <= 2){
@@ -52,11 +49,13 @@ function WX() { //fires every 15 minutes
                 retries = 0;
                 return;
             }
-
         }
     });
-    console.log(objToSendleft);
-    console.log(objToSendright);
+    function CL() {
+      console.log(objToSendleft);
+      console.log(objToSendright);
+    };
+    setInterval(CL, 10000);
 
 //}, null, true, 'America/New_York');
 
