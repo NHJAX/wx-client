@@ -55,7 +55,7 @@ function WX() { //fires every 15 minutes
       console.log(objToSendleft);
       console.log(objToSendright);
     };
-    CL();
+    setTimeout(CL, 3000);
 
 //}, null, true, 'America/New_York');
 
