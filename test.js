@@ -33,7 +33,6 @@ function WX(tempright, templeft, humleft, humright) { //fires every 15 minutes
 
     sensor.read(11, 17, function(err, templeft, humleft) {
         if (!err) {
-            let humleft = humleft;
             var objToSendleft = {
                 "temp": (templeft.toFixed(1)),
                 "hum": (humleft.toFixed(1))
