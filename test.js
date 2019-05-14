@@ -8,7 +8,7 @@ var humleft = 0;
 var objToSendright = "";
 var objToSendleft = "";
 
-function WX(tempright, templeft, humleft, humright) { //fires every 15 minutes
+function WX() { //fires every 15 minutes
 
     sensor.read(11, 4, function(err, temp, hum) {
         if (!err) {
@@ -55,14 +55,13 @@ function WX(tempright, templeft, humleft, humright) { //fires every 15 minutes
             }
         }
     });
-    function CL() {
-      console.log(humleft);
-      console.log(humright);
+
+    function average(){
+      var humavg = (humleft+humright)/2;
+      var tempavg = (templeft+tempright)/2;
+      console.log(humavg, tempavg);
     };
-    setTimeout(CL, 3000);
 
-//}, null, true, 'America/New_York');
-
+    setTimeout(average, 3000);
 };
 WX();
-//setInterval(WX, 10000); //loops WX function every 10 seconds (10000 milliseconds) TO INFINITY AND BEYOND OR ATLEAST UNTIL A REBOOT
