@@ -8,7 +8,7 @@ var humleft = 0;
 var objToSendright = "";
 var objToSendleft = "";
 
-function WX() { //fires every 15 minutes
+function WX(tempright, templeft, humleft, humright) { //fires every 15 minutes
 
     sensor.read(11, 4, function(err, tempright, humright) {
         if (!err) {
