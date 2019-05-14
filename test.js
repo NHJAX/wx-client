@@ -59,7 +59,7 @@ function WX() { //fires every 15 minutes
     function average(){
       var humavg = (humleft+humright)/2;
       var tempavg = (templeft+tempright)/2;
-      console.log(humavg, tempavg);
+      console.log("Temp Avg ", tempavg, " Hum Avg ", humavg);
     };
 
     setTimeout(average, 3000);
