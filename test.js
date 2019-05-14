@@ -51,7 +51,7 @@ function WX() { //fires every 15 minutes
             }
         }
     });
-    function CL(objToSendleft, objToSendright) {
+    function CL(humleft, humright) {
       console.log(humleft);
       console.log(humright);
     };
