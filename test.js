@@ -51,7 +51,7 @@ function WX(tempright, templeft, humleft, humright) { //fires every 15 minutes
             }
         }
     });
-    function CL(humleft, humright) {
+    function CL() {
       console.log(humleft);
       console.log(humright);
     };
