@@ -14,7 +14,7 @@ pin = 17
 # Rev. 1 Raspberry Pis should leave bus set at 0, while rev. 2 Pis should set
 # bus equal to 1. The address should be changed to match the address of the
 # sensor.
-sensor = RPi_AS3935(address=0x03, bus=1)
+sensor = RPi_AS3935(address=0x02, bus=1)
 # Indoors = more sensitive (can miss very strong lightnings)
 # Outdoors = less sensitive (can miss far away lightnings)
 sensor.set_indoors(False)
