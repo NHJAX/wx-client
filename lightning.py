@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from RPi_AS3935 import RPi_AS3935
 import RPi.GPIO as GPIO
-import thread
+# import thread
 import time
 from datetime import datetime
 
