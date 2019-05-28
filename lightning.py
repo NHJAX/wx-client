@@ -10,7 +10,7 @@ from datetime import datetime
 GPIO.setmode(GPIO.BCM)
 
 # pin used for interrupts
-pin = 18
+pin = 17
 # Rev. 1 Raspberry Pis should leave bus set at 0, while rev. 2 Pis should set
 # bus equal to 1. The address should be changed to match the address of the
 # sensor.
